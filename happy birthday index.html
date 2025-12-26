@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ulang Tahun Spesial!</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(to top, #ffdde1, #ee9ca7);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  h1 {
+    font-size: 3em;
+    color: #ff1493;
+    margin: 0.2em;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+  }
+
+  h2 {
+    font-size: 2em;
+    color: #ff69b4;
+    margin: 0.2em;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    animation-delay: 2s;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  /* Confetti */
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+    border-radius: 50%;
+    animation: fall 3s linear infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+  }
+
+  /* Balon */
+  .balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 50px;
+    height: 70px;
+    border-radius: 50% 50% 50% 50%;
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg);}
+    100% { transform: translateY(-110vh) rotate(360deg);}
+  }
+
+  /* Kue ulang tahun */
+  .cake {
+    position: relative;
+    width: 150px;
+    height: 100px;
+    background: #ff69b4;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+
+  .candle {
+    position: absolute;
+    width: 10px;
+    height: 30px;
+    background: yellow;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+  }
+
+  .flame {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: orange;
+    border-radius: 50%;
+    top: -10px;
+    left: 0;
+    animation: flicker 0.5s infinite alternate;
+  }
+
+  @keyframes flicker {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0.6; }
+  }
+</style>
+</head>
+<body>
+
+<h1 id="birthdayMsg">Happy Birthday!</h1>
+<h2 id="nameAge"></h2>
+
+<div class="cake">
+  <div class="candle">
+    <div class="flame"></div>
+  </div>
+</div>
+
+<script>
+  const name = "Rahma";
+  const age = 13;
+
+  document.getElementById("nameAge").innerText = `${name}, selamat ulang tahun yang ke-${age}!`;
+
+  // Confetti
+  function createConfetti() {
+    const colors = ["#ff0a54", "#ff477e", "#ff7096", "#ff85a1", "#fbb1b1", "#9b5de5", "#f15bb5"];
+    for(let i = 0; i < 100; i++) {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDuration = 2 + Math.random() * 3 + "s";
+      confetti.style.width = 5 + Math.random() * 10 + "px";
+      confetti.style.height = 5 + Math.random() * 10 + "px";
+      document.body.appendChild(confetti);
+    }
+  }
+
+  // Balon
+  function createBalloons() {
+    const colors = ["red", "blue", "green", "yellow", "pink", "purple"];
+    for(let i = 0; i < 10; i++) {
+      const balloon = document.createElement("div");
+      balloon.classList.add("balloon");
+      balloon.style.left = Math.random() * window.innerWidth + "px";
+      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      balloon.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.body.appendChild(balloon);
+    }
+  }
+
+  createConfetti();
+  createBalloons();
+</script>
+
+</body>
+</html>
